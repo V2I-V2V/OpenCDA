@@ -9,7 +9,7 @@ description: |-
 world:
   sync_mode: true
   client_port: 2000
-  fixed_delta_seconds: &delta 0.05
+  fixed_delta_seconds: &delta 0.02
   seed: 22
   weather:
     sun_altitude_angle: 15 # 90 is the midday and -90 is the midnight
@@ -32,9 +32,9 @@ rsu_base: &rsu_base
       lidar_visualize: true # whether to visualize lidar points using open3d
       lidar: # lidar sensor configuration, check CARLA sensor reference for more details
         channels: 32
-        range: 120
+        range: 100
         points_per_second: 1000000
-        rotation_frequency: 20 # the simulation is 20 fps
+        rotation_frequency: 50 # the simulation is 50 fps
         upper_fov: 2
         lower_fov: -25
         dropoff_general_rate: 0.3
@@ -42,7 +42,7 @@ rsu_base: &rsu_base
         dropoff_zero_intensity: 0.4
         noise_stddev: 0.02
     localization:
-      activate: true # when not activated, ego position will be retrieved from server directly
+      activate: false # when not activated, ego position will be retrieved from server directly
       dt: *delta # used for kalman filter
       gnss: # gnss sensor configuration
         noise_alt_stddev: 0.05
@@ -59,9 +59,9 @@ vehicle_base: &vehicle_base
       lidar_visualize: true # whether to visualize lidar points using open3d
       lidar: # lidar sensor configuration, check CARLA sensor reference for more details
         channels: 32
-        range: 120
+        range: 100
         points_per_second: 1000000
-        rotation_frequency: 20 # the simulation is 20 fps
+        rotation_frequency: 50 # the simulation is 50 fps
         upper_fov: 2
         lower_fov: -25
         dropoff_general_rate: 0.3
@@ -69,7 +69,7 @@ vehicle_base: &vehicle_base
         dropoff_zero_intensity: 0.4
         noise_stddev: 0.02
     localization: &base_localize
-      activate: true # when not activated, ego position will be retrieved from server directly
+      activate: false # when not activated, ego position will be retrieved from server directly
       dt: *delta # used for kalman filter
       gnss: # gnss sensor configuration
         noise_alt_stddev: 0.005
@@ -134,7 +134,7 @@ vehicle_base: &vehicle_base
 # define the background traffic control by carla
 carla_traffic_manager:
   sync_mode: true # has to be same as the world setting
-  global_distance: 5 # the minimum distance in meters that vehicles have to keep with the rest
+  global_distance: 4 # the minimum distance in meters that vehicles have to keep with the rest
   # Sets the difference the vehicle's intended speed and its current speed limit.
   #  Carla default speed is 30 km/h, so -100 represents 60 km/h,
   # and 20 represents 24 km/h

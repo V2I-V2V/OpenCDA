@@ -96,10 +96,10 @@ class DataDumper(object):
         if self.count < 60:
             return
 
-        # 10hz, TODO: make it configurable in the future
+        # 10hz, TODO: make it configurable in the future, remove for now
         # we can adjust the frame frequency in the yaml file to tune this
-        if self.count % 2 != 0:
-            return
+        # if self.count % 2 != 0:
+        #     return
 
         self.save_rgb_image()
         self.save_lidar_points()
