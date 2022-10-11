@@ -96,7 +96,8 @@ class DataDumper(object):
         if self.count < 60:
             return
 
-        # 10hz
+        # 10hz, TODO: make it configurable in the future
+        # we can adjust the frame frequency in the yaml file to tune this
         if self.count % 2 != 0:
             return
 
